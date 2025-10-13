@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/onion/META"
+  "_build/install/default/lib/onion/dune-package"
+  "_build/install/default/lib/onion/opam"
+]
+bin: [
+  "_build/install/default/bin/onion"
+]
