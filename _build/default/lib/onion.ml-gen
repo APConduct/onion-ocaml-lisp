@@ -29,3 +29,6 @@ module Type_parser = Onion__Type_parser
 
 (** @canonical Onion.Types *)
 module Types = Onion__Types
+
+(** @canonical Onion.Vm *)
+module Vm = Onion__Vm

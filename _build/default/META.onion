@@ -1,0 +1,6 @@
+description = ""
+requires = "str"
+archive(byte) = "onion.cma"
+archive(native) = "onion.cmxa"
+plugin(byte) = "onion.cma"
+plugin(native) = "onion.cmxs"

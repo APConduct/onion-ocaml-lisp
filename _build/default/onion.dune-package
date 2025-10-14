@@ -1,4 +1,125 @@
 (lang dune 3.17)
 (name onion)
-(sections (lib .) (bin ../../bin))
-(files (lib (META dune-package opam)) (bin (onion)))
+(sections (lib .) (libexec .) (bin ../../bin))
+(files
+ (lib
+  (META
+   ast.ml
+   bytecode.ml
+   compiler.ml
+   comptime_state.ml
+   dune-package
+   expr_parser.ml
+   lexer.ml
+   macros.ml
+   onion.a
+   onion.cma
+   onion.cmi
+   onion.cmt
+   onion.cmx
+   onion.cmxa
+   onion.ml
+   onion__Ast.cmi
+   onion__Ast.cmt
+   onion__Ast.cmx
+   onion__Bytecode.cmi
+   onion__Bytecode.cmt
+   onion__Bytecode.cmx
+   onion__Compiler.cmi
+   onion__Compiler.cmt
+   onion__Compiler.cmx
+   onion__Comptime_state.cmi
+   onion__Comptime_state.cmt
+   onion__Comptime_state.cmx
+   onion__Expr_parser.cmi
+   onion__Expr_parser.cmt
+   onion__Expr_parser.cmx
+   onion__Lexer.cmi
+   onion__Lexer.cmt
+   onion__Lexer.cmx
+   onion__Macros.cmi
+   onion__Macros.cmt
+   onion__Macros.cmx
+   onion__Type_checking.cmi
+   onion__Type_checking.cmt
+   onion__Type_checking.cmx
+   onion__Type_parser.cmi
+   onion__Type_parser.cmt
+   onion__Type_parser.cmx
+   onion__Types.cmi
+   onion__Types.cmt
+   onion__Types.cmx
+   onion__Vm.cmi
+   onion__Vm.cmt
+   onion__Vm.cmx
+   opam
+   type_checking.ml
+   type_parser.ml
+   types.ml
+   vm.ml))
+ (libexec (onion.cmxs))
+ (bin (onion)))
+(library
+ (name onion)
+ (kind normal)
+ (archives (byte onion.cma) (native onion.cmxa))
+ (plugins (byte onion.cma) (native onion.cmxs))
+ (native_archives onion.a)
+ (requires str)
+ (main_module_name Onion)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name onion)
+     (visibility public)
+     (kind alias)
+     (source (path Onion) (impl (path onion.ml-gen))))
+    (name Onion)
+    (modules
+     (module
+      (obj_name onion__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ast.ml))))
+     (module
+      (obj_name onion__Bytecode)
+      (visibility public)
+      (source (path Bytecode) (impl (path bytecode.ml))))
+     (module
+      (obj_name onion__Compiler)
+      (visibility public)
+      (source (path Compiler) (impl (path compiler.ml))))
+     (module
+      (obj_name onion__Comptime_state)
+      (visibility public)
+      (source (path Comptime_state) (impl (path comptime_state.ml))))
+     (module
+      (obj_name onion__Expr_parser)
+      (visibility public)
+      (source (path Expr_parser) (impl (path expr_parser.ml))))
+     (module
+      (obj_name onion__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path lexer.ml))))
+     (module
+      (obj_name onion__Macros)
+      (visibility public)
+      (source (path Macros) (impl (path macros.ml))))
+     (module
+      (obj_name onion__Type_checking)
+      (visibility public)
+      (source (path Type_checking) (impl (path type_checking.ml))))
+     (module
+      (obj_name onion__Type_parser)
+      (visibility public)
+      (source (path Type_parser) (impl (path type_parser.ml))))
+     (module
+      (obj_name onion__Types)
+      (visibility public)
+      (source (path Types) (impl (path types.ml))))
+     (module
+      (obj_name onion__Vm)
+      (visibility public)
+      (source (path Vm) (impl (path vm.ml))))))
+   (wrapped true))))

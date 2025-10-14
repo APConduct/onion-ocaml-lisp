@@ -4,4 +4,4 @@ type macro_def = {
   body: Ast.expr;
 }
 
-let macro_env = ref []
+(* let macro_env = ref [] *)

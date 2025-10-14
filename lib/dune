@@ -1,0 +1,5 @@
+(library
+ (name onion)
+ (public_name onion)
+ (modules ast bytecode compiler comptime_state expr_parser lexer macros type_checking type_parser types vm)
+ (libraries str))
