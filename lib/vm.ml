@@ -9,6 +9,14 @@ let rec stack_value_to_string v =
   | SAtom s -> s
   | SList vals -> "(" ^ (String.concat " " (List.map stack_value_to_string vals)) ^ ")"
 
+let rec take n lst =
+  if n <= 0 then ([], lst)
+  else match lst with
+    | [] -> ([], [])
+    | x :: xs ->
+      let (taken, rest) = take (n - 1) xs in
+      (x :: taken, rest)
+
 let rec execute_instruction instrs stack =
   match instrs with
   | [] -> stack
