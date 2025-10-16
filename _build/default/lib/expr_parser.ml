@@ -11,6 +11,12 @@ let rec parse_expr tokens =
   | "'" :: rest ->
     let (quoted, remaining) = parse_expr rest in
     (Ast.Quote quoted, remaining)
+  | "`" :: rest ->
+    let (quasiquoted, remaining) = parse_expr rest in
+    (Ast.QuasiQuote quasiquoted, remaining)
+  | "," :: rest ->
+    let (unquoted, remaining) = parse_expr rest in
+    (Ast.Unquote unquoted, remaining)
   | token :: ":" :: rest ->
     let (typ, remaining) = Type_parser.parse_type rest in
     (* Convert Types.typ to Ast.expr - using Atom as a simple representation *)

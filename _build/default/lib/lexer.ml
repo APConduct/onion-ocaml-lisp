@@ -13,6 +13,10 @@ let rec lex_helper input pos acc =
       lex_helper input ( pos + 1 ) ( ")" :: acc)
     else if c = '\'' then
       lex_helper input (pos + 1) ( "'" :: acc)
+    else if c = '`' then
+      lex_helper input (pos + 1) ( "`" :: acc)
+    else if c = ',' then
+      lex_helper input (pos + 1) ( "," :: acc)
     else if c = ':' then lex_helper input ( pos + 1 ) ( ":" :: acc )
     else
       let end_pos = ref (pos + 1) in
@@ -20,6 +24,8 @@ let rec lex_helper input pos acc =
       input.[!end_pos] <> '(' &&
       input.[!end_pos] <> ')' &&
       input.[!end_pos] <> '\'' &&
+      input.[!end_pos] <> '`' &&
+      input.[!end_pos] <> ',' &&
       input.[!end_pos] <> ':' do
         incr end_pos
       done;

@@ -71,10 +71,15 @@ let rec compile expr =
     let compiled_b = compile b in
     compiled_a @ compiled_b @ [CONS] *)
   | List (Ast.Atom "if" :: [cond; then_expr; else_expr]) ->
-  let cond_code = compile cond in
-  let then_code = compile then_expr in
-  let else_code = compile else_expr in
-  cond_code @ [IF (then_code, else_code)]
+    let cond_code = compile cond in
+    let then_code = compile then_expr in
+    let else_code = compile else_expr in
+    cond_code @ [IF (then_code, else_code)]
+  | List (Ast.Atom "if" :: [cond; then_expr]) ->
+    let cond_code = compile cond in
+    let then_code = compile then_expr in
+    let else_code = compile (Ast.Atom "nil") in
+    cond_code @ [IF (then_code, else_code)]
   | _ -> raise (Compile_error "Unknown form")
 
 let compile_with_types input =

@@ -3,9 +3,9 @@ let macro_env = ref ([] : Onion.Macros.macro_def list)
 let () =
   Printf.printf "Lisp Compiler with macros (type 'quit' to exit) \n";
   Printf.printf "Examples:\n";
-  Printf.printf "    (defmacro when (cond body) `(if, cond, body))\n";
+  Printf.printf "    (defmacro when (cond body) `(if ,cond ,body))\n";
   Printf.printf "    (when (> 5 3) (+ 10 20))\n";
-  Printf.printf "    (defmacro twice (x) '(+ ,x ,x))\n";
+  Printf.printf "    (defmacro twice (x) `(+ ,x ,x))\n";
   Printf.printf "    (twice 5)\n";
   Printf.printf ">  ";
 
