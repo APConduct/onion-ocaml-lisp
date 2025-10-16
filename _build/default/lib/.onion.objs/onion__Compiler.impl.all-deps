@@ -1,3 +1,7 @@
 onion__Ast
 onion__Bytecode
 onion__Comptime_state
+onion__Expr_parser
+onion__Type_checking
+onion__Type_parser
+onion__Types

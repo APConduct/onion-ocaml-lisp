@@ -76,3 +76,15 @@ let rec compile expr =
   let else_code = compile else_expr in
   cond_code @ [IF (then_code, else_code)]
   | _ -> raise (Compile_error "Unknown form")
+
+let compile_with_types input =
+  let expr, _ = Expr_parser.parse_expr input in
+  let typ = Type_checking.infer_type [] expr in
+  let bytecode = compile expr in
+  (typ, bytecode)
+
+(* Compile an already-parsed AST, returning (typ, bytecode) *)
+let compile_with_types_ast expr =
+  let typ = Type_checking.infer_type [] expr in
+  let bytecode = compile expr in
+  (typ, bytecode)
